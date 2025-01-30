@@ -119,19 +119,19 @@ function FlowEditor({ workflow }: { workflow: Workflow }) {
       if (input?.type !== output?.type) {
         console.error("invalid connection: type mismatch");
         return false;
-      }      
-      
-      const hasCycle = (node:AppNode, visited = new Set()) => {
-        if (visited.has(node.id)) return false
-        visited.add(node.id)
+      }
+
+      const hasCycle = (node: AppNode, visited = new Set()) => {
+        if (visited.has(node.id)) return false;
+        visited.add(node.id);
 
         for (const outgoer of getOutgoers(node, nodes, edges)) {
           if (outgoer.id === connection.source) return true;
           if (hasCycle(outgoer, visited)) return true;
         }
-      }
+      };
 
-      const detectedCycle = hasCycle(target)
+      const detectedCycle = hasCycle(target);
       return !detectedCycle;
     },
     [nodes, edges]
