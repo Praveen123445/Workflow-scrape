@@ -5,7 +5,7 @@ import { WorkflowTask } from "@/types/workflow.js";
 import { ExtractTextFromElementTask } from "./ExtractTextFromElementTask";
 
 type Registry = {
-    [K in TaskType]: WorkflowTask & { type: K}
+    [K in TaskType]: WorkflowTask
 }
 export const TaskRegistry: Registry = {
     LAUNCH_BROWSER: LaunchBrowserTask,

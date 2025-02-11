@@ -37,11 +37,12 @@ model WorkflowExecution {
   workflowId  String
   userId      String
   trigger     String
-  status      String  
+  status      String
   createdAt   DateTime  @default(now())
   startedAt   DateTime?
   completedAt DateTime?
-  
+  definition  String    @default("{}")
+
   creditsConsumed Int @default(0)
 
   phases ExecutionPhase[]
@@ -65,4 +66,16 @@ model ExecutionPhase {
 
   workflowExecutionId String
   execution           WorkflowExecution @relation(fields: [workflowExecutionId], references: [id], onDelete: Cascade)
+
+  logs ExecutionLog[]
+}
+
+model ExecutionLog {
+  id        String   @id @default(cuid())
+  logLevel  String
+  message   String
+  timestamp DateTime @default(now())
+
+  executionPhaseId String
+  executionPhase   ExecutionPhase @relation(fields: [executionPhaseId], references: [id], onDelete: Cascade)
 }
