@@ -43,6 +43,7 @@ import {
 } from "lucide-react";
 import React, { ReactNode, useEffect, useState } from "react";
 import PhaseStatusBadge from "./PhaseStatusBadge";
+import ReactCountUpWrapper from "@/components/ReactCountUpWrapper";
 
 type ExecutionData = Awaited<ReturnType<typeof GetWorkflowExecutionWithPhases>>;
 export default function ExecutionViewer({
@@ -98,7 +99,10 @@ export default function ExecutionViewer({
           <ExecutionLabel
             icon={CircleDashedIcon}
             label="Status"
-            value={query.data?.status}
+            value={<div className="font-semibold capitalize flex gap-2 items-center">
+              <PhaseStatusBadge status={query.data?.status as ExecutionPhaseStatus}/>
+              <span>{query.data?.status}</span>
+            </div>}
           />
 
           <ExecutionLabel
@@ -129,7 +133,7 @@ export default function ExecutionViewer({
           <ExecutionLabel
             icon={CoinsIcon}
             label="Credits consumed"
-            value={creditsConsumed}
+            value={<ReactCountUpWrapper value={creditsConsumed}/>}
           />
         </div>
         <Separator />
@@ -147,7 +151,7 @@ export default function ExecutionViewer({
               className="w-full justify-between"
               variant={selectedPhase === phase.id ? "secondary" : "ghost"}
               onClick={() => {
-                if (isRunning) return;
+                if (isRunning) return
                 setSelectedPhase(phase.id);
               }}
             >
@@ -184,7 +188,7 @@ export default function ExecutionViewer({
                   <CoinsIcon size={18} className="stroke-muted-foreground" />
                   <span>Credits</span>
                 </div>
-                <span>TODO</span>
+                <span>{phaseDetails.data.creditsConsumed}</span>
               </Badge>
               <Badge variant={"outline"} className="space-x-4">
                 <div className="flex gap-1 items-center">
