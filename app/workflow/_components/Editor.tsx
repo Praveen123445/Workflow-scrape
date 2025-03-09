@@ -5,9 +5,9 @@ import React from "react";
 import { ReactFlowProvider } from "@xyflow/react";
 import FlowEditor from "./FlowEditor";
 import Topbar from "./topbar/Topbar";
-import TaskMenu from "./TaskMenu";
 import { FlowValidationContextProvider } from "@/components/context/FlowValidationContext";
 import { WorkflowStatus } from "@/types/workflow";
+import TaskMenu from "./TaskMenu";
 
 function Editor({ workflow }: { workflow: Workflow }) {
   return (

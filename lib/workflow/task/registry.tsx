@@ -2,7 +2,6 @@ import { TaskType } from "@/types/task.js";
 import { LaunchBrowserTask } from "./LaunchBrowser";
 import { PageToHtmlTask } from "./PageToHtml";
 import { WorkflowTask } from "@/types/workflow.js";
-import { ExtractTextFromElementTask } from "./ExtractTextFromElementTask";
 import { FillInputTask } from "./FillInput";
 import { ClickElementTask } from "./ClickElement";
 import { WaitForElementTask } from "./WaitForElement";
@@ -12,6 +11,7 @@ import { ReadPropertyFromJsonTask } from "./ReadPropertyFromJson";
 import { AddPropertyToJsonTask } from "./AddPropertyToJson";
 import { NavigateUrlTask } from "./NavigateUrlTask";
 import { ScrollToElementTask } from "./ScrollElement";
+import { ExtractTextFromElementTask } from "./ExtractTextFromElementTask";
 
 type Registry = {
     [K in TaskType]: WorkflowTask
